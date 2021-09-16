@@ -1,0 +1,39 @@
+<%- include ('../partials/header') %>
+
+	<!-- Edit post Form -->
+    <div class="container">
+      <hr class="hr-footer">
+      <div class="container-form">
+        <h1 class="form-name"> Edit Post </h1>
+        <form action="/posts/<%= post._id %>?_method=PUT" method="POST"> 
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input class="form-control" id="title" type="text" name="post[title]" value="<%= post.title %>" placeholder="Title" required>
+          </div>
+          <div class="form-group">
+            <label for="topic">Topic</label>
+            <select class="form-control" id="topic" name="post[topic]" required>
+              <option <%= post.topic === 'sports' ? 'selected' : '' %> value="sports"> Sports </option>
+              <option <%= post.topic === 'economics' ? 'selected' : '' %> value="economics"> Economics </option>
+              <option <%= post.topic === 'fashion' ? 'selected' : '' %> value="fashion"> Fashion </option>
+              <option <%= post.topic === 'politics' ? 'selected' : '' %> value="politics"> Politics </option>
+              <option <%= post.topic === 'media' ? 'selected' : '' %> value="media"> Media </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="image">Image/Video Url</label>
+            <input class="form-control" id="image" type="text" name="post[image]" value="<%= post.image %>" placeholder="(Video url is only for media topic)" required>
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control form-description" id="description" name="post[description]" placeholder="Description" required><%= post.description %></textarea>
+          </div>
+          <div class="form-group">
+            <button class="btn comment-btn">Submit</button>
+          </div>
+        </form>
+        <a href="/posts/<%= post._id %>">Go Back</a>
+      </div>
+    </div>
+
+<%- include ('../partials/footer') %>

@@ -1,0 +1,20 @@
+<%- include ('../partials/header') %>
+
+	<!-- New Comment -->
+    <div class="container">
+      <hr class="hr-footer">
+      <div class="container-form">
+        <h1 class="form-name"> Add New Comment </h1>
+        <form action="/posts/<%= post._id %>/comments" method="POST"> 
+          <div class="form-group">
+            <textarea class="form-control form-description" name="comment[text]" placeholder="Comment" required></textarea>
+          </div>
+          <div class="form-group">
+            <button class="btn comment-btn">Submit</button>
+          </div>
+        </form>
+        <a href="/posts/<%= post._id %>">Go Back</a>
+      </div>
+    </div>
+
+<%- include ('../partials/footer') %>

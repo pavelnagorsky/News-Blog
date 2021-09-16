@@ -1,0 +1,39 @@
+<%- include ('../partials/header') %>
+
+	<!-- New post Form -->
+    <div class="container">
+      <hr class="hr-footer">
+      <div class="container-form">
+        <h1 class="form-name"> Add New Post </h1>
+        <form action="/posts" method="POST"> 
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input class="form-control" id="title" type="text" name="title" placeholder="Title" required>
+          </div>
+          <div class="form-group">
+            <label for="topic">Topic</label>
+            <select class="form-control" id="topic" name="topic" required>
+              <option value="sports"> Sports </option>
+              <option value="economics"> Economics </option>
+              <option value="fashion"> Fashion </option>
+              <option value="politics"> Politics </option>
+              <option value="media"> Media </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="image">Image/Video Url</label>
+            <input class="form-control" id="image" type="text" name="image" placeholder="(Video url is only for media topic)" required>
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control form-description" id="description" name="description" placeholder="Description" required></textarea>
+          </div>
+          <div class="form-group">
+            <button class="btn comment-btn">Submit</button>
+          </div>
+        </form>
+        <a href="/posts">Go Back</a>
+      </div>
+    </div>
+
+<%- include ('../partials/footer') %>

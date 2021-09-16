@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NewsBlog</title>
+  <!-- main fonts -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic|Playfair+Display:400,700&subset=latin,cyrillic">
+  <!-- icons -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css">
+  <!-- Fonts for menu -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet"> 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <!-- Fonts for logo -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono&family=Inconsolata:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <!-- css styles -->
+  <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/pages.css">
+  <!-- prefix modernizer -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+</head>
+<body>
+  <!-- wrapper  -->
+  <div class="wrapper"> 
+
+    <!-- Nav-menu -->
+    <nav class="container">
+      <header>
+        <div class="nav-toggle"><span></span></div>
+        <ul id="menu">
+          <li><a class="<%= typeof page !== 'undefined' && page === 'posts' ? 'nav-active' : '' %>" href="/posts">Home</a></li>
+		  <% if(currentUser && currentUser.username === adminUsername){ %>
+		    <li><a class="<%= typeof page !== 'undefined' && page === 'newPost' ? 'nav-active' : '' %>" href="/posts/new">New Post</a></li>
+		  <% } %>	
+		  <% if(!currentUser){ %>
+			<li><a class="<%= typeof page !== 'undefined' && page === 'login' ? 'nav-active' : '' %>" href="/login">Log in</a></li>
+			<li><a class="<%= typeof page !== 'undefined' && page === 'register' ? 'nav-active' : '' %>" href="/register">Sign in</a></li>
+		  <% } else { %>
+            <li><a class="username" href="#">Signed in as: <i><%= currentUser.username %></i></a></li>
+            <li><a href="/logout">Log out</a></li>
+		  <% } %>		
+        </ul>
+      </header>
+    </nav> 
+
+    <!-- site logo -->
+    <div class="container"> 
+      <div class="jumbotron">
+        <a href='#' class='logo'> Fast<span>News</span> </a>
+        <div class="logo-text"> Clean, cool and powerfull news-blog theme</div>
+      </div>
+    </div>
+
+    <!-- flash message -->
+    <div class="container">
+      <div class="alert-container">
+	    <% if (error && error.length > 0) { %>
+          <div class="alert alert-danger" role='alert'>
+            <%= error %>
+          </div>
+		<% } %>  
+		<% if (success && success.length > 0) { %>
+          <div class="alert alert-success" role='alert'>
+            <%= success %>
+          </div>
+		<% } %>   
+      </div>
+    </div>

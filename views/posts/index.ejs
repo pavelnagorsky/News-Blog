@@ -1,0 +1,200 @@
+<%- include ('../partials/header') %>
+
+	<!-- posts table -->
+    <div class="container">  
+      <div class="grid-container">
+        <div class="col-1">
+          <div class="posts-list">
+            <article id="post-1" class="post images">
+              <!-- slideshow -->
+              <div class="slideshow-container">
+                <% for (var i = posts.length - 1; i >= posts.length - 5; i--) { %>
+                  <% if ((posts[i] != undefined) && (posts[i].topic != "media")){ %> 
+                    <div class="mySlides fade">
+                      <img class="slide-image" src="<%= posts[i].image %>">
+                      <div class="slideText-container">
+                        <div class="slideText-info">in: <%= posts[i].topic %> | <%= moment(posts[i].createdAt).format('DD MMMM YYYY') %></div>
+                        <h2 class="slideText-title">
+                          <a href="/posts/<%= posts[i]._id %>"><%= posts[i].title %></a>
+                        </h2>
+                        <div class="slideText-description">
+                          <% if (posts[i].description.length > 130){ %>
+                            <%- posts[i].description.substring(0,130) + '...' %>
+                          <% } else { %>
+                            <%- posts[i].description %>
+                          <% }; %>
+                        </div>
+                      </div>
+                    </div>
+                  <% } %>
+                <% }; %>   
+                <br>
+                <div class="dot-container">
+                  <span class="dot"></span> 
+                  <span class="dot"></span> 
+                  <span class="dot"></span> 
+                  <span class="dot"></span> 
+                  <span class="dot"></span>
+                </div>
+              </div>
+            </article> 
+          </div>   
+		  <!-- категория sports -->
+          <h1 class='category'> <a href="#">Sports</a></h1>
+          <div class="posts-list">
+            <% for (var i = posts.length - 1; i >= 0; i--) { %>
+              <% if (posts[i].topic == "sports"){ %>
+                <article id="post-1" class="post sports">
+                  <div class="post-image"><img src="<%= posts[i].image %>"></div>
+                  <div class="post-content">
+                    <h2 class="post-title">
+                      <a href="/posts/<%= posts[i]._id %>"><%= posts[i].title %></a>
+                    </h2>
+                    <div class="post-date"><span>— <%= moment(posts[i].createdAt).format('DD MMMM YYYY') %></span></div>
+                    <p>
+                      <% if (posts[i].description.length > 160){ %>
+                        <%- posts[i].description.substring(0,160) + '...' %>
+                      <% } else { %>
+                        <%- posts[i].description %>
+                      <% }; %>
+                    </p>
+                  </div>
+                </article> 
+              <% } %>
+            <% }; %> 
+          </div>
+		  <!-- категория economics -->
+          <h1 class='category'><a href="#">Economics</a></h1>
+          <div class="posts-list">
+            <% for (var i = posts.length - 1; i >= 0; i--) { %>
+              <% if (posts[i].topic == "economics"){ %>
+                <article id="post-1" class="post economics">
+                  <div class="post-image"><img src="<%= posts[i].image %>"></div>
+                  <div class="post-content">
+                    <h2 class="post-title">
+                      <a href="/posts/<%= posts[i]._id %>"><%= posts[i].title %></a>
+                    </h2>
+                    <div class="post-date"><span>— <%= moment(posts[i].createdAt).format('DD MMMM YYYY') %></span></div>
+                    <p>
+                      <% if (posts[i].description.length > 160){ %>
+                        <%- posts[i].description.substring(0,160) + '...' %>
+                      <% } else { %>
+                        <%- posts[i].description %>
+                      <% }; %>
+                    </p>
+                  </div>
+                </article>  
+              <% } %>
+            <% }; %> 
+          </div>
+        </div>
+        <div class="col-2">  
+		  <!-- featured news -->
+          <h1 class='category'><a href="#">Featured</a></h1> 
+          <div class="posts-list"> 
+            <% for (var i = posts.length - 1; i >= posts.length - 3; i--) { %> 
+              <% if (posts[i] != undefined){ %>      
+                <article id="post-1" class="post featured">
+                  <% if (posts[i].topic == "media"){ %>
+                    <video src="<%= posts[i].image %>" controls></video>
+                  <% } else { %>
+                   <div class="post-image"><img src="<%= posts[i].image %>"></div>
+                  <% } %>
+                  <div class="post-content">
+                    <h2 class="post-title">
+                      <a href="/posts/<%= posts[i]._id %>"><%= posts[i].title %></a>
+                    </h2>
+                    <div class="post-date"><span>— <%= moment(posts[i].createdAt).format('DD MMMM YYYY') %></span></div>
+                    <p>
+                      <% if (posts[i].description.length > 140){ %>
+                        <%- posts[i].description.substring(0,140) + '...' %>
+                      <% } else { %>
+                        <%- posts[i].description %>
+                      <% }; %>
+                    </p>
+                  </div>
+                </article> 
+              <% } %>
+            <% }; %>     
+          </div>
+        </div>
+        <div class="col-3">  
+		  <!-- категория fashion -->
+          <h1 class='category'><a href="#">Fashion</a></h1>
+          <div class="posts-list">
+            <% for (var i = posts.length - 1; i >= 0; i--) { %>
+              <% if (posts[i].topic == "fashion"){ %>
+                <article id="post-1" class="post fashion">
+                  <div class="post-image"><img src="<%= posts[i].image %>"></div>
+                  <div class="post-content">
+                    <h2 class="post-title">
+                      <a href="/posts/<%= posts[i]._id %>"><%= posts[i].title %></a>
+                    </h2>
+                    <div class="post-date"><span>— <%= moment(posts[i].createdAt).format('DD MMMM YYYY') %></span></div>
+                    <p>
+                      <% if (posts[i].description.length > 160){ %>
+                        <%- posts[i].description.substring(0,160) + '...' %>
+                      <% } else { %>
+                        <%- posts[i].description %>
+                      <% }; %>
+                    </p>
+                  </div>
+                </article> 
+              <% } %>
+            <% }; %>   
+          </div> 
+          <!-- категория politics -->
+          <h1 class='category'><a href="#">Politics</a></h1>
+          <div class="posts-list">
+            <% for (var i = posts.length - 1; i >= 0; i--) { %>
+              <% if (posts[i].topic == "politics"){ %>
+                <article id="post-1" class="post politics">
+                  <div class="post-image"><img src="<%= posts[i].image %>"></div>
+                  <div class="post-content">
+                    <h2 class="post-title">
+                      <a href="/posts/<%= posts[i]._id %>"><%= posts[i].title %></a>
+                    </h2>
+                    <div class="post-date"><span>— <%= moment(posts[i].createdAt).format('DD MMMM YYYY') %></span></div>
+                    <p>
+                      <% if (posts[i].description.length > 160){ %>
+                        <%- posts[i].description.substring(0,160) + '...' %>
+                      <% } else { %>
+                        <%- posts[i].description %>
+                      <% }; %>
+                    </p>
+                  </div>
+                </article>  
+              <% } %>
+            <% }; %> 
+          </div>
+        </div>
+        <div class="col-4"> 
+          <!-- категория media -->
+          <h1 class='category'><a href="#">Media</a></h1>
+          <div class="posts-list">
+            <% for (var i = posts.length - 1; i >= 0; i--) { %>
+              <% if (posts[i].topic == "media"){ %>
+                <article class="post media"> 
+                  <video src="<%= posts[i].image %>" controls></video>
+                  <div class="post-content">
+                    <h2 class="post-title">
+                      <a href="/posts/<%= posts[i]._id %>"><%= posts[i].title %></a>
+                    </h2>
+                    <div class="post-date"><span>— <%= moment(posts[i].createdAt).format('DD MMMM YYYY') %></span></div>
+                    <p>
+                      <% if (posts[i].description.length > 160){ %>
+                        <%- posts[i].description.substring(0,160) + '...' %>
+                      <% } else { %>
+                        <%- posts[i].description %>
+                      <% }; %>
+                    </p>
+                  </div>
+                </article>
+              <% } %>
+            <% }; %> 
+          </div>  
+        </div>
+      </div>
+    </div>
+
+<%- include ('../partials/footer') %>

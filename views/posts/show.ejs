@@ -1,0 +1,84 @@
+<%- include ('../partials/header') %>
+
+	<div class="container">
+      <div class="grid-container-postPage">
+		<!-- main post -->
+        <div class="column-1">
+          <h1 class='category'> <a href="#"><%= post.topic %></a></h1>
+          <div class="post-list">
+            <article class="post main-post">
+			  <% if (post.topic == 'media'){ %>
+				<video src="<%= post.image %>" controls></video>
+			  <% } else { %>
+              	<div class="post-image"><img src="<%= post.image %>"></div>
+			  <% } %>	
+              <div class="post-content">
+                <h2 class="post-title"><%= post.title %></h2>
+                <div class="post-date post-date-margin">
+                  <span>— <%= moment(post.createdAt).format('DD MMMM YYYY') %></span>
+                  <i class="fa fa-eye views" aria-hidden="true"><%= post.views %></i>
+                </div>
+                <p>
+                  <%= post.description %>
+                </p>
+              </div>
+              <a href="/posts" class="btn">Go Back</a>
+			  <% if (currentUser && post.author.id.equals(currentUser._id)) { %>
+                <a href="/posts/<%= post._id %>/edit" class="btn edit-btn">Edit</a>
+                <form class="form-delete" action='/posts/<%= post._id %>?_method=DELETE' method='POST'>
+                  <button class="btn delete-btn">Delete</button>
+                </form>
+			  <% } %>
+            </article> 
+          </div>
+		  <!-- comments -->
+          <div class="comments-container">
+            <a class="btn comment-btn" href="/posts/<%= post._id %>/comments/new">Add a New Comment</a>
+			<% post.comments.forEach(function(comment){ %>  
+              <div class="comment">
+                <div class="comment-author"><%= comment.author.username %><span class="comment-date">— <%= moment(comment.createdAt).fromNow() %></span></div>
+                <p class="comment-text"><%= comment.text %></p>
+				<% if (currentUser && (comment.author.id.equals(currentUser._id) || currentUser.username === adminUsername)) { %>
+                  <a href="/posts/<%= post._id %>/comments/<%= comment._id %>/edit" class="btn btn-xs edit-btn">Edit</a>
+                  <form class="form-delete" action='/posts/<%= post._id %>/comments/<%= comment._id %>?_method=DELETE' method='POST'>
+                    <button class="btn btn-xs delete-btn">Delete</button>
+                  </form>
+				<% } %>  
+              </div>
+			<% }); %>  
+          </div>
+        </div>
+        <!-- featured news -->
+        <div class="column-2">
+          <h1 class='category'><a href="#">Featured</a></h1>
+          <div class="posts-list">
+			<% for (var i = featuredNews.length - 1; i >= featuredNews.length - 4; i--) { %>
+			  <% if ((featuredNews[i] != undefined) && (!featuredNews[i]._id.equals(post._id))){ %>
+				<article class="post postPage-featured">
+				  <% if (featuredNews[i].topic == "media") { %>
+				    <video src="<%= featuredNews[i].image %>" controls></video> 
+				  <% } else { %>		
+				    <div class="post-image"><img src="<%= featuredNews[i].image %>"></div>
+				  <% } %>	
+				  <div class="post-content">
+					<h2 class="post-title">
+					  <a href="/posts/<%= featuredNews[i]._id %>"><%= featuredNews[i].title %></a>
+					</h2>
+					<div class="post-date"><span>— <%= moment(featuredNews[i].createdAt).fromNow() %></span></div>
+					<p>
+					  <% if (featuredNews[i].description.length > 130){ %>
+                        <%- featuredNews[i].description.substring(0,130) + '...' %>
+                      <% } else { %>
+                        <%- featuredNews[i].description %>
+                      <% }; %>
+					</p>
+				  </div>
+				</article>
+			  <% } %>
+			<% } %>
+          </div>
+        </div>
+      </div> 
+    </div>
+
+<%- include ('../partials/footer') %>

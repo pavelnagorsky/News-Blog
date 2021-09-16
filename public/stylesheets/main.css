@@ -1,0 +1,569 @@
+/*стили главной страницы*/
+
+/*общие настройки*/
+*, *:after, *:before {
+   box-sizing: border-box;
+   padding: 0;
+   margin: 0;
+   /* добавим плавность переходов для всех элементов страницы*/
+   transition: .5s ease-in-out;
+}
+ul {
+   list-style: none;
+}
+a {
+   text-decoration: none;
+   outline: none;
+}
+img {
+   display: block;
+   width: 100%;
+   max-height: 600px;
+}
+video {
+   width: 100%;
+   position: relative;
+   height: auto;
+   max-height: 600px;
+   margin-bottom: 15px;
+}
+h1, h2, h3, h4, h5, h6 {
+   font-family: 'Playfair Display';
+   font-weight: normal;
+   letter-spacing: 1px;
+}
+html {
+   height: 100%;
+}
+body {
+   height: 100%;
+   font-family: 'Open Sans', arial, sans-serif;
+   font-size: 14px;
+   line-height: 1;
+   color: #373737;
+   background: #f7f7f7;
+}
+
+/* стиль .wrapper содержит все теги страницы, кроме футера. нужен, чтобы прижать футер вниз */
+.wrapper {
+   min-height: 85%;
+   height: auto !important;
+   height: 100%;
+}
+
+/* добавим очистку потока для всех контейнеров, внутри которых задано обтекание дочерних элементов */
+header:after, .container:after, footer:after, .widget-posts-list li:after{
+   content: "";
+   display: table;
+   clear: both;
+}
+
+/* главный контейнер ширины страницы */
+.container {
+   margin: 0 auto;
+   width: 100%;
+   max-width: 1200px;
+   padding: 0 15px;
+}
+
+/* панель верхнего меню */
+header {
+   border-top: 1px solid #e7e7e7;
+   box-sizing: border-box;
+   width: 100%;
+   background: #098d94;
+   padding-top: 7px;
+   position: relative;
+}
+
+/* список вкладок верхнего меню */
+#menu {
+   font-family: 'Merriweather', serif;
+   float: left;
+}
+/* настройка стилей верхнего меню и его дочерних элементов */
+#menu li:first-child {
+   margin-left: 15px;      
+}
+#menu li {
+   display: inline-block;
+   margin-left: 5px;
+}
+#menu a {
+   color: #f7f7f7;
+   text-transform: uppercase;
+   letter-spacing: 0.5px;
+   font-weight: 700;
+   display: block;
+   line-height: 30px;
+   padding: 6px 18px 9px 18px;
+}
+#menu a.username {
+   text-transform: none;
+}
+#menu a:hover {
+   color: #141414;
+   background-color: #f7f7f7;
+}
+/* класс аналогичный #menu a:hover; */
+#menu .nav-active {
+   color: #141414;
+   background-color: #f7f7f7;
+}
+/* класс, который будет добавлен в верхнему меню при нажатии на кнопку и покажет скрытое меню*/
+#menu.active {
+   max-height: inherit;
+}
+
+/* кнопка переключения меню, появляющаяся при ширине 768px */
+.nav-toggle {
+   display: none;
+   position: relative;
+   float: right;
+   width: 40px;
+   height: 40px;
+   margin-right: 20px;
+   background: #f7f4f405;
+   cursor: pointer;
+}
+.nav-toggle span {
+   display: block;
+   position: absolute;
+   top: 19px;
+   left: 8px;
+   right: 8px;
+   height: 2px;
+   background: white;
+}
+
+.nav-toggle span:before, .nav-toggle span:after {
+   content: "";
+   position: absolute;
+   display: block;
+   left: 0;
+   width: 100%;
+   height: 2px;
+   background: white;
+}
+.nav-toggle span:before {
+   top: -10px;
+}
+.nav-toggle span:after {
+   bottom: -10px;
+}
+.toogle-active {
+   background-color: #ECE5E42B;
+}
+
+/* панель для логотипа */
+.jumbotron {
+   font-size: 63px;
+   padding: 20px 20px 18px 12px;
+
+}
+/* логотип */
+.logo {
+   font-family: 'Inconsolata', monospace;
+   font-weight: 400;
+   letter-spacing: -9px;
+   float: left;
+   color: #2c292a;
+   width: 30px;
+   height: 30px;
+   line-height: 30px;
+   margin: 5px 0;
+}
+.logo span {
+   font-weight: 700;
+   letter-spacing: -2px;
+   margin-left: 3px;
+}
+.logo-text {
+   /*display: inline-block;*/
+   margin-top: 50px;
+   margin-left: 4px;
+   font-family: 'Open Sans', arial, sans-serif;
+   font-size: 12px;
+   font-weight: normal;
+   color: #666666;
+}
+
+/*flash оповещения*/
+.alert-container {
+   display: flex;
+   flex-flow: column;
+   margin-bottom: 10px;
+}
+.alert{
+   margin: 10px 0;
+   padding: 15px;
+   border: 1px solid transparent;
+   border-radius: 4px;
+}
+.alert-success {
+   color: #3c763d;
+   background-color: #dff0d8;
+   border-color: #d6e9c6;
+}
+.alert-danger {
+   color: #a94442;
+   background-color: #f2dede;
+   border-color: #ebccd1;
+}
+
+/* grid контейнер с новостями */
+.grid-container{
+   overflow-wrap: break-word;
+   border: 0.5px solid #d0d0d05e;
+   border-top: 0.5px solid #d0d0d087;;
+   border-bottom: 5px solid #008e96;
+   display: grid;
+   grid-template-columns: 50% 30% 20%;
+   grid-template-rows: auto 1fr;
+   grid-template-areas: 
+    "col-1 col-2 col-2"
+    "col-1 col-3 col-4";
+}
+.col-1 {
+   grid-area: col-1;
+}
+.col-2 {
+   grid-area: col-2;
+}
+.col-3 {
+   grid-area: col-3;
+}
+.col-4 {
+   grid-area: col-4;
+}
+
+/* flex контейнер для новостей */
+.posts-list {
+   border: 0.5px solid #d0d0d05e;
+   border-top: none;
+   display: flex;  
+   flex-flow:row wrap;
+   padding: 5px;
+}
+
+/* строка с названием категории новостей */
+.category {
+   margin: 0 15px;
+   padding: 10px 0;
+   border-bottom: 3px double #d0d0d063;
+}
+.category a {
+   text-transform: uppercase;
+   color: #008e96;
+   font-size: 22px;
+   font-weight: 700;
+}
+
+/* flex блок для одной новости */
+.post > * {
+  flex: 1 100%;
+}
+.post {
+   padding: 10px;
+   min-width: calc(100%/3);
+}
+
+/* классы ширины flex элементов в зависимости от категории новостей */
+.images, .fashion, .media, .politics {
+   flex-basis: 100%;
+}
+.featured {
+   flex-basis: calc(100%/3);
+}
+.sports, .economics{
+   flex-basis: 50%;
+}
+
+/*стили содержимого новости*/
+.post-title {
+   margin-bottom: 12px;
+   font-size: 21px;
+}
+.post-title a {
+   color: #373737;
+}
+.post-image {
+   margin-bottom: 15px;
+}
+.post-date {
+   margin-bottom: 10px;
+}
+.post-date span {
+   font-size: 13px;
+   color: #00a9af;
+   font-style: italic;
+}
+.post-content p {
+   color: #666666;
+   line-height: 1.5;
+   padding-bottom: 1em;
+   padding-bottom: 20px;
+   border-bottom: 0.5px solid #d0d0d063;
+}
+
+/* стили оформления слайдшоу */
+
+/*скрываем слайды для корректной работы скрипта слайдшоу*/
+.mySlides {display: none;}
+/* общий контейнер для слайдшоу */
+.slideshow-container {	
+  position: relative;
+  margin: auto;
+}
+/*задаем изображению слайдшоу квадратный размер для данной ширины flex элемента*/
+.slide-image{
+   width: 100%;
+   height: 100%;
+   max-height: 500px;
+   min-height: 500px;
+}
+/* стили для текста слайдшоу-новости */
+.slideText-container {	
+  min-width: 90%;
+  color: #f7f7f7;
+  background: #0a0a03c7;
+  font-size: 15px;
+  padding: 15px 20px;
+  position: absolute;
+  margin: 0 20px;
+  bottom: 7%;
+  line-height: 1.5;
+}
+.slideText-info {
+   font-size: 12px;
+}
+.slideText-title {
+   line-height: 1;
+   padding: 13px 0;
+   font-size: 22px;
+   font-weight: bold;
+}
+.slideText-title a {
+   color: #f7f7f7;
+}
+.slideText-description {
+   font-size: 14px;
+}
+
+/* Стили кружков-индикаторов слайдшоу */
+.dot-container {
+  position: absolute;
+  text-align: right;
+  right: 5%;
+  top: 5%;
+}
+.dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #f7f7f7;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+.dot-active {
+  background-color: #098d94;
+}
+/* анимация перехода */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 2s;
+  animation-name: fade;
+  animation-duration: 2s;
+}
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* футер страницы */
+
+footer {
+   position: relative;
+   bottom: 0;
+   width: 100%;
+   max-width: 1200px;
+   padding-top: 15px;
+   background: #f7f7f7;
+   color: #797979;
+}
+/* горизонтальные линии футера */
+.hr-footer {
+   margin-bottom: 15px;
+   padding: 0;
+   height: 0;
+   border: none;
+   border-top: 0.5px solid #cacacaa1;
+}
+.hr-footer:last-child {
+   margin:15px 0;
+   border: none;
+   border-top: 3px double #cacacaa1;
+}
+/* flex контейнер футера и стили его содержимого */
+.footer-body {
+   display: flex;
+   flex-flow: row wrap;
+   justify-content: space-around;
+}
+.footer-col {
+   line-height: 1.5;
+   padding: 0 10px;
+}
+.footer-col a {
+   color: #797979;
+}
+/*оформление иконок соцсетей*/
+.social-bar-wrap {
+   text-align: center;
+}
+.social-bar-wrap a {
+   padding: 0 7px;
+   font-size: 18px;
+}
+
+/* стили адаптивности на меньших экранах */
+
+@media (max-width: 960px) {
+   /* изменяем положение grid колонок */
+   .grid-container{
+      display: grid;
+      grid-template-columns: 100%;
+      grid-template-rows: auto auto auto auto;
+      grid-template-areas: 
+       "col-1"
+       "col-2"
+       "col-3"
+       "col-4";
+   }
+   /* изменяем ширину flex элементов в зависимости от категории */
+   .images {
+      flex-basis: 100%;
+   }
+   .featured {
+      flex-basis: calc(100%/3);
+   }
+   .sports, .fashion, .media, .economics, .politics {
+      flex-basis: 50%;
+   }
+
+   /*задаем изображению слайдшоу квадратный размер для данной ширины flex элемента*/
+   .slide-image{
+      max-height: 600px;
+      min-height: 600px;
+   }
+}
+
+@media (max-width: 768px) {
+   /* показываем кнопку для переключения верхней навигации */
+   .nav-toggle {
+      display: block;
+   }
+   /*делаем панель верхнего меню чуть шире для удобства на маленьких экранах*/
+   header {
+      padding: 10px 0;
+   }
+   /* скрываем верхнее меню, отменяем обтекание, позиционируем его, сместив на высоту шапки сайта */
+   #menu {
+      max-height: 0;
+      background: white;
+      float: none;
+      position: absolute;
+      overflow: hidden;
+      top: 63px;
+      right: 0;
+      left: 0;
+      margin: 0;
+      padding: 0;
+      z-index: 3;
+   }
+   /* делаем элементы списка блочными, чтобы они располагались друг под другом */
+   /* и добавляем стили выезжающего списка меню*/
+   #menu li {
+      display: block;
+      text-align: center;
+      border-bottom: 1px solid #EBEBE3;
+      margin: 0 15px;
+   }
+   #menu li a{
+      line-height: 40px;
+      display: block;
+      padding: 0;
+   }
+   #menu.active a{
+      font-weight: 600;
+      color: #141414;
+   }
+   #menu li a:hover {
+      color: #098d94;
+      background-color: rgba(227, 227, 227, 0.75);
+   }
+   #menu.active .nav-active{
+      color: #098d94;
+      background-color: rgba(227, 227, 227, 0.75);
+   }
+   #menu.active{
+      border-bottom: 0.5px solid #cacacadb;
+      padding-bottom: 5px;
+   }
+
+   /* выравниваем логотип по центру */
+   .jumbotron {
+      text-align: center;
+      padding-top: 8px;
+   }
+   .logo {
+      float: none;
+      text-align: center;
+   }
+   .logo-text {
+      margin-top: 0;
+   }
+   /* задаем изображению слайдшоу квадратный размер для данной ширины flex элемента */
+   .slide-image{
+      max-height: 470px;
+      min-height: 470px;
+   }
+
+   /* выравниваем текст новости по центру */
+   .post {
+      text-align: center;
+      flex-basis: 100%; 
+   }
+}
+
+@media (max-width: 480px) {
+   /* выравниваем содержимое футера по центру */
+   .footer-col {
+      text-align: center;
+   }
+
+   /* задаем изображению слайдшоу квадратный размер для данной ширины flex элемента */
+   .slide-image {
+      max-height: 290px;
+      min-height: 290px;
+   }
+   /* убираем описание новости и уменьшаем текст на слайдшоу */
+   .slideText-container {
+      bottom: 5%;
+      margin: 0;
+      text-align: left;
+      width: 100%;
+   }
+   .slideText-title {
+      font-size: 17px;
+      padding-bottom: 7px;
+   }
+   .slideText-description {
+      display: none;
+   }
+}
